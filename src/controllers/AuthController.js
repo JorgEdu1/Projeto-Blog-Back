@@ -37,4 +37,26 @@ export class AuthController {
       return res.status(500).json(error)
     }
   }
+
+  static async registerUser(req, res) {
+    const { username, password, email } = req.body
+
+    try {
+      const hashedPassword = await bcrypt.hash(password, 10)
+
+      const user = await prisma.user.create({
+        data: {
+          username,
+          password: hashedPassword,
+          role: 'adm',
+          email,
+          icon: 'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png',
+        },
+      })
+
+      return res.status(201).json(user)
+    } catch (error) {
+      return res.status(500).json(error)
+    }
+  }
 }
