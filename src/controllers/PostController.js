@@ -10,6 +10,7 @@ export class PostController {
           category: true,
         },
       })
+
       return res.status(200).json({
         posts: posts.map((post) => ({
           id: post.id,
@@ -17,6 +18,8 @@ export class PostController {
           content: post.content,
           category: post.category,
           author: post.author,
+          createdAt: post.createdAt,
+          updatedAt: post.updatedAt,
         })),
       })
     } catch (error) {
@@ -75,6 +78,8 @@ export class PostController {
         content: post.content,
         category: post.category,
         author: post.author,
+        createdAt: post.createdAt,
+        updatedAt: post.updatedAt,
       })
     } catch (error) {
       console.error(error)
