@@ -12,6 +12,12 @@ app.use(cors())
 
 app.post('/login', AuthController.loginUser)
 
+app.get('/auth', authenticateToken, (req, res) => {
+  res
+    .status(200)
+    .json({ message: 'Authenticated successfully', user: req.user })
+})
+
 app.use(authenticateToken)
 
 app.use('/user', userRoutes)
