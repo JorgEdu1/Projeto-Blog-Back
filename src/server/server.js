@@ -10,8 +10,8 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-app.post('/login', AuthController.loginUser)
 app.post('/register', AuthController.registerUser)
+app.post('/login', AuthController.loginUser)
 
 app.get('/auth', authenticateToken, (req, res) => {
   res

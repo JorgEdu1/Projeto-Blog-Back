@@ -54,7 +54,12 @@ export class AuthController {
         },
       })
 
-      return res.status(201).json(user)
+      return res.status(201).json({
+        username: user.username,
+        email: user.email,
+        role: user.role,
+        icon: user.icon,
+      })
     } catch (error) {
       return res.status(500).json(error)
     }
