@@ -9,11 +9,11 @@ const prisma = new PrismaClient()
 
 export class AuthController {
   static async loginUser(req, res) {
-    const { email, password } = req.body
+    const { username, password } = req.body
 
     try {
       const user = await prisma.user.findUnique({
-        where: { email },
+        where: { username },
       })
 
       if (!user) {
@@ -26,7 +26,6 @@ export class AuthController {
         return res.status(401).json({ error: 'Invalid password' })
       }
 
-      // Gerar o token JWT
       const token = jwt.sign(
         { userId: user.id, role: user.role },
         process.env.JWT_SECRET,
