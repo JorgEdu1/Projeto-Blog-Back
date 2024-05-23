@@ -32,7 +32,7 @@ export class AuthController {
         { expiresIn: '1h' },
       )
 
-      return res.status(200).json({ token })
+      return res.status(200).json({ username, token })
     } catch (error) {
       return res.status(500).json(error)
     }
