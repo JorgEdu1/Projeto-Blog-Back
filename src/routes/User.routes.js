@@ -1,31 +1,11 @@
-const express = require('express')
-const { PrismaClient } = require('@prisma/client')
+import express from 'express'
+import { UserController } from '../controllers/UserController.js'
 const router = express.Router()
 
-const prisma = new PrismaClient()
+router.get('', UserController.getUsers)
+router.post('', UserController.createUser)
+router.get('/:id', UserController.getUserById)
+router.put('/:id', UserController.updateUser)
+router.delete('/:id', UserController.deleteUser)
 
-router.get('', async (req, res) => {
-  await prisma.user.findMany().then((users) => {
-    return res.status(200).json(users)
-  })
-})
-
-router.post('/create', async (req, res) => {
-  const { name, email, password } = req.body
-
-  try {
-    const user = await prisma.user.create({
-      data: {
-        name,
-        email,
-        password,
-      },
-    })
-
-    return res.status(201).json(user)
-  } catch (error) {
-    return res.status(500).json(error)
-  }
-})
-
-module.exports = router
+export default router
