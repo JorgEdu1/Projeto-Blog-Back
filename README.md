@@ -1,2 +1,2 @@
-# Projeto-ES
-Projeto para a cadeira de ES
+# Projeto-Blog-Back
+Projeto para Blog Pessoal
