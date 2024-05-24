@@ -39,7 +39,7 @@ export class AuthController {
   }
 
   static async registerUser(req, res) {
-    const { username, password, email } = req.body
+    const { username, password, email, role } = req.body
 
     try {
       const hashedPassword = await bcrypt.hash(password, 10)
@@ -48,7 +48,7 @@ export class AuthController {
         data: {
           username,
           password: hashedPassword,
-          role: 'adm',
+          role,
           email,
           icon: 'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png',
         },
