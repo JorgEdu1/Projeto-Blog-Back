@@ -17,13 +17,13 @@ export class AuthController {
       })
 
       if (!user) {
-        return res.status(404).json({ error: 'User not found' })
+        return res.status(404).json({ error: 'Username não encontrado' })
       }
 
       const isPasswordValid = await bcrypt.compare(password, user.password)
 
       if (!isPasswordValid) {
-        return res.status(401).json({ error: 'Invalid password' })
+        return res.status(401).json({ error: 'Senha errada' })
       }
 
       const token = jwt.sign(
